@@ -1,23 +1,35 @@
 {
   "name": "@npm-wearetriple/meister-plugin-standardui",
-  "version": "1.0.0",
-  "description": "Meister standard ui",
   "main": "dist/StandardUi.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "author": {
+    "name": "Triple"
+  },
+  "description": "Meister standard ui",
+  "dependencies": {
+    "noop2": "^2.0.0"
+  },
+  "devDependencies": {
+    "@npm-wearetriple/gulp-webpack-tasks": "^1.0.0",
+    "@npm-wearetriple/js-dev": "^3.0.0",
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-es2017": "^6.22.0",
+    "babel-runtime": "^6.23.0",
+    "base64-font-loader": "0.0.4",
+    "css-loader": "^0.26.2",
+    "gulp": "^3.9.1",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.2",
+    "style-loader": "^0.13.2",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.2.1"
   },
   "keywords": [
     "meister",
     "video",
     "plugin"
   ],
-  "author": "Triple",
   "license": "Apache-2.0",
-  "dependencies": {
-    "noop2": "^2.0.0"
-  },
-  "devDependencies": {
-    "@npm-wearetriple/js-dev": "^2.3.3",
-    "gulp": "^3.9.1"
-  }
+  "version": "1.0.0"
 }
