@@ -12,7 +12,7 @@ class CaptionsButton extends BaseElement {
         this.captionSelector = document.createElement('div');
         this.classListAdd(this.captionSelector, 'pf-quality-selector', 'hidden');
 
-        this.element.appendChild(this.captionSelector);
+        this.meister.controlsWrapper.appendChild(this.captionSelector);
 
         this.element.addEventListener('click', this.onClick.bind(this));
 
@@ -93,6 +93,7 @@ class CaptionsButton extends BaseElement {
     createOption(language, code) {
         const languageOption = document.createElement('div');
         languageOption.classList.add('pf-quality-option');
+        languageOption.classList.add('pf-ui-element-active');
 
         languageOption.textContent = language.charAt(0).toUpperCase() + language.toLowerCase().slice(1);
 
@@ -104,6 +105,8 @@ class CaptionsButton extends BaseElement {
         // Check for mobile.
         if (this.isMobile) languageOption.selected.classList.add('pf-mobile');
         languageOption.appendChild(languageOption.selected);
+
+        languageOption.addEventListener('click', (e) => this.onClick(e));
 
         this.captionSelector.appendChild(languageOption);
         return languageOption;

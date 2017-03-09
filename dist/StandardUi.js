@@ -2894,7 +2894,7 @@ var CaptionsButton = function (_BaseElement) {
         _this.captionSelector = document.createElement('div');
         _this.classListAdd(_this.captionSelector, 'pf-quality-selector', 'hidden');
 
-        _this.element.appendChild(_this.captionSelector);
+        _this.meister.controlsWrapper.appendChild(_this.captionSelector);
 
         _this.element.addEventListener('click', _this.onClick.bind(_this));
 
@@ -2982,8 +2982,11 @@ var CaptionsButton = function (_BaseElement) {
     }, {
         key: 'createOption',
         value: function createOption(language, code) {
+            var _this3 = this;
+
             var languageOption = document.createElement('div');
             languageOption.classList.add('pf-quality-option');
+            languageOption.classList.add('pf-ui-element-active');
 
             languageOption.textContent = language.charAt(0).toUpperCase() + language.toLowerCase().slice(1);
 
@@ -2995,6 +2998,10 @@ var CaptionsButton = function (_BaseElement) {
             // Check for mobile.
             if (this.isMobile) languageOption.selected.classList.add('pf-mobile');
             languageOption.appendChild(languageOption.selected);
+
+            languageOption.addEventListener('click', function (e) {
+                return _this3.onClick(e);
+            });
 
             this.captionSelector.appendChild(languageOption);
             return languageOption;
