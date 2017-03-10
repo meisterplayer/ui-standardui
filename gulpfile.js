@@ -13,7 +13,7 @@ const bundleConfigDist = webpackTask.createConfig('./index.js', `dist/${MODULE_N
 const bundleCompilerDist = webpackTask.createCompiler(bundleConfigDist);
 gulp.task('build:dist', webpackTask.createBuildTask(bundleCompilerDist));
 
-const bundleConfigMin = webpackTask.createConfig('./index.js', `dist/${MODULE_NAME}.js`);
+const bundleConfigMin = webpackTask.createConfig('./index.js', `dist/${MODULE_NAME}.min.js`, true);
 const bundleCompilerMin = webpackTask.createCompiler(bundleConfigMin);
 gulp.task('build:min', webpackTask.createBuildTask(bundleCompilerMin));
 

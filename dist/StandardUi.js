@@ -2482,6 +2482,13 @@ var StandardUi = function (_Meister$Ui) {
         value: function onAdBreakStarted() {
             this.meister.elementUtils.classListAdd(this.standardWrapper, 'pf-ui-element-hidden');
             this.meister.adWrapper.classList.remove('pf-ui-element-hidden');
+
+            // iOS cannot handle visibility:hidden very well.
+            // So we make an exception for that and use display instead on this element.
+            if (this.meister.browser.isiOS) {
+                this.meister.adWrapper.style.display = 'block';
+            }
+
             this.adControls.show();
         }
     }, {
@@ -2489,6 +2496,13 @@ var StandardUi = function (_Meister$Ui) {
         value: function onAdBreakEnded() {
             this.meister.elementUtils.classListRemove(this.standardWrapper, 'pf-ui-element-hidden');
             this.meister.adWrapper.classList.add('pf-ui-element-hidden');
+
+            // iOS cannot handle visibility:hidden very well.
+            // So we make an exception for that and use display instead on this element.
+            if (this.meister.browser.isiOS) {
+                this.meister.adWrapper.style.display = 'none';
+            }
+
             this.adControls.hide();
         }
     }, {
