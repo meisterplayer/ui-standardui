@@ -8,7 +8,7 @@ class QualityBitrateButton extends BaseElement {
         this.element = document.createElement('div');
 
         this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-right', 'pf-ui-element-active');
-        this.classListAdd(this.element, 'icon', 'icon_icHd');
+        this.classListAdd(this.element, '.pf-icon', '.pf-icon_icHd');
         this.classListAdd(this.element, 'pf-ui-element-hidden');
 
         this.qualitySelector = document.createElement('div');
@@ -110,7 +110,7 @@ class QualityBitrateButton extends BaseElement {
 
         qualityOption.selected = document.createElement('div');
         qualityOption.selected.classList.add('pf-quality-option-select');
-        qualityOption.selected.classList.add('icon');
+        qualityOption.selected.classList.add('.pf-icon');
         // Check for mobile.
         if (this.isMobile) qualityOption.selected.classList.add('pf-mobile');
         qualityOption.appendChild(qualityOption.selected);
@@ -156,7 +156,7 @@ class QualityBitrateButton extends BaseElement {
             const bitrate = this.bitrates[i];
 
             if (bitrate.index === index) {
-                bitrate.option.selected.classList.add('icon_icCheck');
+                bitrate.option.selected.classList.add('.pf-icon_icCheck');
 
                 // Do not notify player on initial select.
                 if (!silent) {
@@ -165,7 +165,7 @@ class QualityBitrateButton extends BaseElement {
                     });
                 }
             } else {
-                bitrate.option.selected.classList.remove('icon_icCheck');
+                bitrate.option.selected.classList.remove('.pf-icon_icCheck');
             }
         }
     }
@@ -219,10 +219,10 @@ class QualityBitrateButton extends BaseElement {
         for (let i = 0; i < this.qualityMapping.length; i++) {
             const mapping = this.qualityMapping[i];
             if (mapping.option) {
-                mapping.option.selected.classList.remove('icon_icCheck');
+                mapping.option.selected.classList.remove('.pf-icon_icCheck');
                 mapping.bitrates.forEach((bitrate) => {
                     if (bitrate.bitrateIndex === index) {
-                        mapping.option.selected.classList.add('icon_icCheck');
+                        mapping.option.selected.classList.add('.pf-icon_icCheck');
 
                         // Do not notify player on initial select.
                         if (!silent) {

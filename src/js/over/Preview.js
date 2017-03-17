@@ -23,7 +23,7 @@ class Preview extends BaseElement {
 
         this.classListAdd(this.playButton,
             'pf-preview-play-button', 'pf-ui-element-active', 'pf-ui-element-hidden');
-        this.classListAdd(this.playButton, 'icon', 'icon_icPlay');
+        this.classListAdd(this.playButton, '.pf-icon', '.pf-icon_icPlay');
 
         this.element.appendChild(this.info);
         this.element.appendChild(this.playButton);

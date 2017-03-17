@@ -9,7 +9,7 @@ class CastButton extends BaseElement {
         this.element = document.createElement('div');
         this.classListAdd(this.element,
             'pf-ui-element', 'pf-ui-element-right', 'pf-ui-element-active', 'pf-ui-element-hidden');
-        this.classListAdd(this.element, 'icon');
+        this.classListAdd(this.element, '.pf-icon');
 
         this.onClick = noop;
 
@@ -22,7 +22,7 @@ class CastButton extends BaseElement {
         this.isChromecastAvailible((available) => {
             if (!available) return;
 
-            this.classListAdd(this.element, 'icon_icCast');
+            this.classListAdd(this.element, '.pf-icon_icCast');
             this.classListRemove(this.element, 'pf-ui-element-hidden');
             this.onClick = this.loadChromecast;
 
@@ -66,7 +66,7 @@ class CastButton extends BaseElement {
                 }
 
                 self.element.classList.remove('pf-ui-element-hidden');
-                self.element.classList.add('icon_icAirplay');
+                self.element.classList.add('.pf-icon_icAirplay');
 
                 self.onClick = () => this.webkitShowPlaybackTargetPicker();
                 break;
@@ -77,7 +77,7 @@ class CastButton extends BaseElement {
                 }
 
                 self.element.classList.add('pf-ui-element-hidden');
-                self.element.classList.remove('icon_icAirplay');
+                self.element.classList.remove('.pf-icon_icAirplay');
 
                 self.onClick = noop;
                 break;

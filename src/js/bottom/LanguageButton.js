@@ -7,7 +7,7 @@ class LanguageButton extends BaseElement {
         this.element = document.createElement('div');
 
         this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-right', 'pf-ui-element-active');
-        this.classListAdd(this.element, 'icon', 'icon_icLanguage');
+        this.classListAdd(this.element, '.pf-icon', '.pf-icon_icLanguage');
         this.classListAdd(this.element, 'pf-ui-element-hidden');
 
         this.on('itemLanguages', (languages) => this.onItemLanguages(languages));
