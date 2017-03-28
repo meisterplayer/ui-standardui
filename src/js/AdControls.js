@@ -80,11 +80,13 @@ class AdControls extends BaseElement {
 
         this.on('adStarted', (info) => {
             const ad = info.adsManager.getCurrentAd();
-            const adPodInfo = ad.getAdPodInfo();
+            if (ad) {
+                const adPodInfo = ad.getAdPodInfo();
 
-            this.adCount.textContent = `Ad ${adPodInfo.getAdPosition()} of ${adPodInfo.getTotalAds()}`;
-            const adDuration = this.meister.utils.timeToHMS(Math.round(ad.getDuration()));
-            this.adCountDown.textContent = `(${adDuration})`;
+                this.adCount.textContent = `Ad ${adPodInfo.getAdPosition()} of ${adPodInfo.getTotalAds()}`;
+                const adDuration = this.meister.utils.timeToHMS(Math.round(ad.getDuration()));
+                this.adCountDown.textContent = `(${adDuration})`;
+            }
         });
 
         this.on('adTimeupdate', (info) => {

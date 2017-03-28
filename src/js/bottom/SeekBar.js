@@ -277,14 +277,16 @@ class SeekBar extends BaseElement {
     }
 
     onAdEnded(info) {
-        const adPodInfo = info.ad.getAdPodInfo();
+        if (info && info.ad) {
+            const adPodInfo = info.ad.getAdPodInfo();
 
-        // Remove it on the end of the first ad in the break, because is simpler.
-        const element = document.getElementById(`adpoint-${adPodInfo.getTimeOffset()}`);
-        delete this.points[`adpoint-${adPodInfo.getTimeOffset()}`];
+            // Remove it on the end of the first ad in the break, because is simpler.
+            const element = document.getElementById(`adpoint-${adPodInfo.getTimeOffset()}`);
+            delete this.points[`adpoint-${adPodInfo.getTimeOffset()}`];
 
-        if (element !== null) {
-            element.remove();
+            if (element !== null) {
+                element.remove();
+            }
         }
     }
 
