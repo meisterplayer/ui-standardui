@@ -8,6 +8,7 @@ class AdControls extends BaseElement {
         super(meister);
 
         this.element = document.createElement('div');
+        this.classListAdd(this.element, 'pf-ad-controls-wrapper');
         this.classListAdd(this.element, 'pf-ui-element-hidden');
 
         this.adControls = document.createElement('div');
