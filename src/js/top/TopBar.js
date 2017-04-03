@@ -21,7 +21,7 @@ class TopBar extends BaseElement {
         this.classListAdd(this.topRightWrapper, 'pf-ui-wrapper-right');
 
         if (!this.config.castButton || !this.config.castButton.hide) {
-            this.castButton = new CastButton(meister);
+            this.castButton = new CastButton(meister, config);
             this.topRightWrapper.appendChild(this.castButton.getNode());
         }
 

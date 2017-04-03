@@ -1,9 +1,8 @@
 import noop from 'noop2';
 import BaseElement from '../BaseElement';
-import Canvas from '../Canvas';
 
 class CastButton extends BaseElement {
-    constructor(meister) {
+    constructor(meister, config) {
         super(meister);
 
         this.element = document.createElement('div');
@@ -13,7 +12,7 @@ class CastButton extends BaseElement {
 
         this.onClick = noop;
 
-        if (window.WebKitPlaybackTargetAvailabilityEvent) {
+        if (window.WebKitPlaybackTargetAvailabilityEvent && config.enableAirPlay) {
             this.on('playerCreated', () => {
                 this.enableAirplay();
             });
