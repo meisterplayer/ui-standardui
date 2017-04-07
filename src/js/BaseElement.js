@@ -10,7 +10,7 @@ class BaseElement {
         this.eventStore = [];
 
         if (this.onItemUnloaded) {
-            this.on('itemUnloaded', (e) => this.onItemUnloaded(e));
+            this.on('itemUnloaded', (e) => { this.onItemUnloaded(e); });
         }
     }
 
@@ -27,6 +27,7 @@ class BaseElement {
         classListAdd(...args);
     }
 
+    // eslint-disable-next-line class-methods-use-this
     classListRemove(...args) {
         classListRemove(...args);
     }

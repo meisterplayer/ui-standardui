@@ -22,7 +22,7 @@ class PlaylistButtons extends BaseElement {
         this.element.appendChild(this.prevButton);
         this.element.appendChild(this.nextButton);
 
-        this.on('playlistInfo', (playlistInfo) => this.onPlaylistInfo(playlistInfo));
+        this.on('playlistInfo', (playlistInfo) => { this.onPlaylistInfo(playlistInfo); });
     }
 
     onPlaylistInfo(playlistInfo) {

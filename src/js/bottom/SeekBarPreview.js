@@ -20,7 +20,7 @@ class SeekbarPreview extends BaseElement {
 
         this.images = [];
 
-        this.on('itemTimeInfo', (timeInfo) => this.onItemTimeInfo(timeInfo));
+        this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); });
 
         this.on('itemImagestream', (info) => {
             this.images = info.images;
@@ -82,18 +82,12 @@ class SeekbarPreview extends BaseElement {
     }
 
     getImageByTime(time) {
-        if (this.images.length === 0) {
-            return '';
-        }
+        if (this.images.length === 0) { return ''; }
 
-        for (let i = 0; i < this.images.length; i++) {
-            const image = this.images[i];
+        const imageForTime = this.images.find(image => image.start <= time && image.end >= time);
 
-            if (image.start <= time && image.end >= time) {
-                return image.src;
-            }
-        }
-
+        if (imageForTime) { return imageForTime.src; }
+        // Return the last image if we're unable to find one.
         return this.images[this.images.length - 1].src;
     }
 }

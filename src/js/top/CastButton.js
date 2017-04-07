@@ -24,8 +24,6 @@ class CastButton extends BaseElement {
             this.classListAdd(this.element, '.pf-icon_icCast');
             this.classListRemove(this.element, 'pf-ui-element-hidden');
             this.onClick = this.loadChromecast;
-
-            this.canvasVideo = new Canvas(meister);
         });
 
         this.element.addEventListener('click', () => this.onClick());

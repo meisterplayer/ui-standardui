@@ -48,8 +48,8 @@ class VolumeSlider extends BaseElement {
         this.element.addEventListener('mouseover', () => this.showSlider(true));
         this.element.addEventListener('mouseleave', () => this.showSlider(false));
 
-        this.sliderWrapper.addEventListener('mousedown', (e) => this.onDown(e));
-        this.sliderWrapper.addEventListener('touchstart', (e) => this.onDown(e));
+        this.sliderWrapper.addEventListener('mousedown', (e) => { this.onDown(e); });
+        this.sliderWrapper.addEventListener('touchstart', (e) => { this.onDown(e); });
 
         this.onMove = (e) => {
             if (this.isDragging) {
@@ -147,9 +147,9 @@ class VolumeSlider extends BaseElement {
     }
 
     clearIcons() {
-        for (let i = 0; i <= 3; i++) {
+        [0, 1, 2, 3].forEach((i) => {
             this.classListRemove(this.volumeButton, `icon_icVol${i}`);
-        }
+        });
     }
 
     updateIcon() {

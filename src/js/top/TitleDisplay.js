@@ -10,7 +10,7 @@ class TitleDisplay extends BaseElement {
         this.title = '';
         this.element.innerHTML = this.title;
 
-        this.on('itemMetadata', (metadata) => this.onItemMetadata(metadata));
+        this.on('itemMetadata', (metadata) => { this.onItemMetadata(metadata); });
     }
 
     onItemUnloaded() {

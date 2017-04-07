@@ -33,7 +33,7 @@ class TopBar extends BaseElement {
         this.on('uiPluginClose', () => this.onPluginClose());
 
         // Listen for plugins that want to add buttons.
-        this.on('uiPluginInserted', (info) => this.insertPlugin(info));
+        this.on('uiPluginInserted', (info) => { this.insertPlugin(info); });
 
         // Clicks inside the control bars shouldn't play/pause the player.
         this.element.addEventListener('click', (e) => {

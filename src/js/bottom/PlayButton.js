@@ -19,7 +19,7 @@ class PlayButton extends BaseElement {
         // Register event listeners
         this.element.addEventListener('click', () => this.onClick());
 
-        this.on('itemTimeInfo', (timeInfo) => this.onItemTimeInfo(timeInfo));
+        this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); });
         this.on('playerPlay', () => this.toggleIcon());
         this.on('playerPause', () => this.toggleIcon());
         this.on('itemLoaded', () => this.toggleIcon());

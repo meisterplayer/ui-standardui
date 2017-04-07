@@ -10,7 +10,7 @@ class LanguageButton extends BaseElement {
         this.classListAdd(this.element, '.pf-icon', '.pf-icon_icLanguage');
         this.classListAdd(this.element, 'pf-ui-element-hidden');
 
-        this.on('itemLanguages', (languages) => this.onItemLanguages(languages));
+        this.on('itemLanguages', (languages) => { this.onItemLanguages(languages); });
     }
 
     onItemUnloaded() {

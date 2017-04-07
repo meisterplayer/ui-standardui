@@ -22,10 +22,10 @@ class QualityButton extends BaseElement {
 
         this.meister.controlsWrapper.appendChild(this.qualitySelector);
 
-        this.element.addEventListener('click', (e) => this.onClick(e));
+        this.element.addEventListener('click', (e) => { this.onClick(e); });
 
         this.bitrates = null;
-        this.on('itemBitrates', (info) => this.onItemBitrates(info));
+        this.on('itemBitrates', (info) => { this.onItemBitrates(info); });
 
         if (Array.isArray(this.config.qualityMapping)) {
             this.qualityMappingMode = true;
@@ -88,11 +88,11 @@ class QualityButton extends BaseElement {
 
         if (this.qualityMappingMode) {
             this.bitrates = prepareResolutionMapping(this.bitrates, this.qualityMapping);
-            this.qualityMapping.forEach(mapping => {
+            this.qualityMapping.forEach((mapping) => {
                 if (mapping.bitrates.length < 1) {
                     if (this.meister.config.debug) console.error('No bitrates available for this mapping', mapping);
                 } else {
-                    // eslint-disable-next-line
+                    // eslint-disable-next-line no-param-reassign
                     mapping.option = this.createOption({
                         type: RESOLUTION,
                         mapping,
@@ -100,10 +100,10 @@ class QualityButton extends BaseElement {
                 }
             });
         } else {
-            this.bitrates.forEach(bitrateInfo => {
+            this.bitrates.forEach((bitrateInfo) => {
                 // A bitrate of 0 means auto quality.
                 const bitrate = bitrateInfo.bitrate === 0 ? 'auto' : bitrateInfo.bitrate;
-                // eslint-disable-next-line
+                // eslint-disable-next-line no-param-reassign
                 bitrateInfo.option = this.createOption({
                     type: BITRATE,
                     bitrate,
@@ -137,7 +137,7 @@ class QualityButton extends BaseElement {
 
         this.qualitySelector.appendChild(qualityOption);
 
-        qualityOption.addEventListener('click', (e) => this.onClick(e));
+        qualityOption.addEventListener('click', (e) => { this.onClick(e); });
 
         return qualityOption;
     }

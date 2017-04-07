@@ -32,9 +32,9 @@ class TimeDisplay extends BaseElement {
 
         this.isLive = false;
 
-        this.on('itemTimeInfo', (timeInfo) => this.onItemTimeInfo(timeInfo));
-        this.on('playerTimeUpdate', (e) => this.onTimeUpdate(e));
-        this.on('playerSeek', (e) => this.onPlayerSeek(e));
+        this.on('itemTimeInfo', (timeInfo) => { this.onItemTimeInfo(timeInfo); });
+        this.on('playerTimeUpdate', (e) => { this.onTimeUpdate(e); });
+        this.on('playerSeek', (e) => { this.onPlayerSeek(e); });
 
         // Ad variables.
         this.adTimer = null;
@@ -74,7 +74,6 @@ class TimeDisplay extends BaseElement {
         if (behindLive < LIVE_THRESHOLD) {
             this.currentTime.innerHTML = '-';
             this.classListRemove(this.duration, 'go-live', 'pf-ui-element-active');
-            return;
         }
     }
 
