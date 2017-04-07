@@ -19,7 +19,7 @@ class VolumeSlider extends BaseElement {
 
         this.volumeButton = document.createElement('div');
         this.classListAdd(this.volumeButton, 'pf-volume-button');
-        this.classListAdd(this.volumeButton, '.pf-icon', '.pf-icon_icVol0');
+        this.classListAdd(this.volumeButton, 'pf-icon', 'pf-icon_icVol0');
         this.element.appendChild(this.volumeButton);
 
         this.sliderWrapper = document.createElement('div');
