@@ -57,8 +57,8 @@ class StandardUi extends Meister.Ui {
         this.adControls = new AdControls(meister, config);
         this.pluginSpace = new PluginSpace(meister, this);
 
-        this.on('adBreakStarted', (e) => this.onAdBreakStarted(e));
-        this.on(['adBreakEnded', 'itemUnloaded'], (e) => this.onAdBreakEnded(e));
+        this.on('adBreakStarted', e => this.onAdBreakStarted(e));
+        this.on(['adBreakEnded', 'itemUnloaded'], e => this.onAdBreakEnded(e));
 
         // Bind class methods to instance for easier event listener removal.
         this.onMouseDown = this.onMouseDown.bind(this);
@@ -73,7 +73,7 @@ class StandardUi extends Meister.Ui {
         this.fixedControls = !!this.config.fixedControls;
         this.toggleFixedControls(this.fixedControls);
 
-        this.on('standard:toggleFixedControls', (e) => this.toggleFixedControls(e.fixed));
+        this.on('standard:toggleFixedControls', e => this.toggleFixedControls(e.fixed));
     }
 
     static get pluginName() {
