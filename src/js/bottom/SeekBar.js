@@ -51,25 +51,26 @@ class SeekBar extends BaseElement {
         this.preview = new SeekbarPreview(meister);
         this.seekBarDuration.appendChild(this.preview.getNode());
 
-        this.on('itemTimeInfo', (timeInfo) => this.onItemTimeInfo(timeInfo));
-        this.on('playerTimeUpdate', (e) => this.onTimeUpdate(e));
-        this.on('playerSeek', (e) => this.onPlayerSeek(e));
-        this.on('playerProgress', (e) => this.onPlayerProgress(e));
+        this.on('itemTimeInfo', timeInfo => this.onItemTimeInfo(timeInfo));
+        this.on('playerTimeUpdate', e => this.onTimeUpdate(e));
+        this.on('playerSeek', e => this.onPlayerSeek(e));
+        this.on('playerProgress', e => this.onPlayerProgress(e));
+        this.on('playerDurationChange', () => { this.videoDuration = this.meister.duration; });
         this.on('playerLoadedMetadata', () => { this.loadedMetadata = true; });
 
         // Ad events.
         this.points = {};
-        this.on('adCuePoints', (info) => this.onAdCuePoints(info));
-        this.on('adEnded', (info) => this.onAdEnded(info));
+        this.on('adCuePoints', info => this.onAdCuePoints(info));
+        this.on('adEnded', info => this.onAdEnded(info));
 
         // Mouse hover events.
-        this.seekBarPadding.addEventListener('mouseover', (e) => this.onMouseOver(e));
-        this.seekBarPadding.addEventListener('mousemove', (e) => this.onMouseMove(e));
+        this.seekBarPadding.addEventListener('mouseover', e => this.onMouseOver(e));
+        this.seekBarPadding.addEventListener('mousemove', e => this.onMouseMove(e));
         this.seekBarPadding.addEventListener('mouseout', () => this.onMouseOut());
 
         // Seeking event listeners.
-        this.seekBarPadding.addEventListener('mousedown', (e) => this.onSeekDown(e));
-        this.seekBarPadding.addEventListener('touchstart', (e) => this.onSeekDown(e));
+        this.seekBarPadding.addEventListener('mousedown', e => this.onSeekDown(e));
+        this.seekBarPadding.addEventListener('touchstart', e => this.onSeekDown(e));
 
         this.onSeekMove = (e) => {
             // Prevent the page from moving while scrubbing
@@ -241,7 +242,7 @@ class SeekBar extends BaseElement {
 
     // Ad event handles/
     onAdCuePoints(info) {
-        for (let i = 0; i < info.points.length; i++) {
+        for (let i = 0; i < info.points.length; i += 1) {
             this.setPoint(info.points[i]);
         }
     }
@@ -251,7 +252,7 @@ class SeekBar extends BaseElement {
 
         function createPoint(t) {
             const elem = document.createElement('div');
-            let normalizedProgress = t / self.meister.duration;
+            let normalizedProgress = t / self.videoDuration;
 
             self.meister.elementUtils.classListAdd(elem, 'pf-seek-bar-point', 'pf-ad-point');
             elem.id = `adpoint-${t}`;
@@ -326,7 +327,7 @@ class SeekBar extends BaseElement {
     }
 
     findTimerange(timeRanges) {
-        for (let i = 0; i < timeRanges.length; i++) {
+        for (let i = 0; i < timeRanges.length; i += 1) {
             if (this.meister.currentTime >= timeRanges.start(i)
                 && this.meister.currentTime <= timeRanges.end(i)
             ) {
