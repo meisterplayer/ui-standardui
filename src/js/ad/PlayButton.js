@@ -41,10 +41,10 @@ class PlayButton extends BaseElement {
 
     onClick() {
         if (this.isPlaying) {
-            this.meister.pause();
+            this.meister.pause(true);
             this.isPlaying = false;
         } else {
-            this.meister.play();
+            this.meister.play(true);
             this.isPlaying = true;
         }
 
