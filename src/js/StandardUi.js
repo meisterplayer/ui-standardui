@@ -233,5 +233,6 @@ class StandardUi extends Meister.Ui {
 }
 
 Meister.registerPlugin(StandardUi.pluginName, StandardUi);
+Meister.registerPlugin('standard', StandardUi);
 
 export default StandardUi;
