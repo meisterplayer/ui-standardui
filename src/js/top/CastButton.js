@@ -5,9 +5,10 @@ class CastButton extends BaseElement {
     constructor(meister, config) {
         super(meister);
 
-        this.element = document.createElement('div');
+        // this.element = document.createElement('div');
+        this.element = document.createElement('button', 'google-cast-button');
         this.classListAdd(this.element,
-            'pf-ui-element', 'pf-ui-element-right', 'pf-ui-element-active', 'pf-ui-element-hidden');
+            'pf-ui-element', 'pf-ui-element-right', 'pf-ui-element-active', 'pf-ui-element-hidden', 'pf-cast-button');
         this.classListAdd(this.element, 'pf-icon');
 
         this.onClick = noop;
@@ -19,14 +20,12 @@ class CastButton extends BaseElement {
         }
 
         this.isChromecastAvailible((available) => {
-            if (!available) return;
+            if (!available) {
+                return;
+            }
 
-            this.classListAdd(this.element, 'pf-icon_icCast');
             this.classListRemove(this.element, 'pf-ui-element-hidden');
-            this.onClick = this.loadChromecast;
         });
-
-        this.element.addEventListener('click', () => this.onClick());
     }
 
     isChromecastAvailible(onStatusChange, tries = 5) {
@@ -84,26 +83,6 @@ class CastButton extends BaseElement {
         });
     }
 
-    loadChromecast() {
-        // let snapshotCanvas = this.canvasVideo.takeSnapshot();
-        const src = this.meister.playerPlugin.currentSrc;
-
-        const player = this.meister.getPlayerByType('chromecast', {
-            src,
-            type: 'video/mp4',
-        });
-
-        // this.meister.playerWrapper.appendChild(snapshotCanvas);
-        player.currentSrc = src;
-        player.load();
-
-
-        // this.chromecaster.onUpdate((info) => {
-        //     console.log(info);
-        // });
-        //
-        // this.chromecaster.launchVideoElement(this.meister.playerPlugin.mediaElement);
-    }
 }
 
 export default CastButton;
