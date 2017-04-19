@@ -22,6 +22,9 @@
         padding-right: 6px;
         line-height: $pf-large-font-size-mobile;
         font-size: $pf-large-font-size-mobile;
+        @media handheld, only screen and (max-width: 375px) {
+            font-size: 4vw;
+        }
     }
 }
 
