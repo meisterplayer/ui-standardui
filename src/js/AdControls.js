@@ -87,6 +87,10 @@ class AdControls extends BaseElement {
                 this.adCount.textContent = `Ad ${adPodInfo.getAdPosition()} of ${adPodInfo.getTotalAds()}`;
                 const adDuration = this.meister.utils.timeToHMS(Math.round(ad.getDuration()));
                 this.adCountDown.textContent = `(${adDuration})`;
+            } else {
+                // TODO: this should be changed. We need to throw an error and have the vast-object handle it accordingly.
+                this.meister.enable('requestPlay');
+                this.meister.enable('requestPause');
             }
         });
 

@@ -105,7 +105,7 @@ class CaptionsButton extends BaseElement {
         // Check for mobile.
         if (this.isMobile) languageOption.selected.classList.add('pf-mobile');
         languageOption.appendChild(languageOption.selected);
-
+        this.captionSelector.appendChild(languageOption);
         languageOption.addEventListener('click', (e) => this.onClick(e));
 
         this.captionSelector.appendChild(languageOption);

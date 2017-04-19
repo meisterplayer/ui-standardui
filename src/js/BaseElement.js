@@ -35,6 +35,14 @@ class BaseElement {
     getNode() {
         return this.element;
     }
+
+    showElement() {
+        this.classListRemove(this.element, 'pf-ui-element-hidden');
+    }
+
+    hideElement() {
+        this.classListAdd(this.element, 'pf-ui-element-hidden');
+    }
 }
 
 export default BaseElement;
