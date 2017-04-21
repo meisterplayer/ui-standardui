@@ -47,12 +47,12 @@ class AdControls extends BaseElement {
         // advertisement count
         this.adCount = document.createElement('div');
         this.classListAdd(this.adCount, 'pf-ad-count');
-        this.adCount.textContent = 'Ad 1 of X';
+        this.adCount.textContent = ' ';
         this.adInfoView.appendChild(this.adCount);
 
         this.adCountDown = document.createElement('div');
         this.classListAdd(this.adCountDown, 'pf-ad-countdown');
-        this.adCountDown.textContent = '(0)';
+        this.adCountDown.textContent = ' ';
         this.adInfoView.appendChild(this.adCountDown);
 
         this.meister.container.addEventListener('mousemove', () => {
@@ -105,7 +105,7 @@ class AdControls extends BaseElement {
 
         this.on('adEnded', () => {
             this.progressBar.style.transform = 'scaleX(0)';
-            this.adCountDown.textContent = '(0)';
+            this.adCountDown.textContent = ' ';
         });
     }
 
@@ -120,8 +120,8 @@ class AdControls extends BaseElement {
         this.classListAdd(this.element, 'pf-ui-element-hidden');
         // Reset the progress bar.
         this.progressBar.style.transform = 'scaleX(0)';
-        this.adCount.textContent = 'Ad 1 of X';
-        this.adCountDown.textContent = '(0)';
+        this.adCount.textContent = ' ';
+        this.adCountDown.textContent = ' ';
     }
 }
 
