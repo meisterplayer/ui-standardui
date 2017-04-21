@@ -45,8 +45,8 @@ class TimeDisplay extends BaseElement {
         this.isLive = false;
         this.classListRemove(this.duration, 'go-live', 'pf-ui-element-active');
 
-        this.currentTime.innerHTML = '-';
-        this.duration.innerHTML = '-';
+        this.currentTime.innerHTML = '0:00';
+        this.duration.innerHTML = '0:00';
     }
 
     onItemTimeInfo(timeInfo) {
