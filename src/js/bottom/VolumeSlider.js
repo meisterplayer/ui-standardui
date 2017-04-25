@@ -148,7 +148,7 @@ class VolumeSlider extends BaseElement {
 
     clearIcons() {
         [0, 1, 2, 3].forEach((i) => {
-            this.classListRemove(this.volumeButton, `icon_icVol${i}`);
+            this.classListRemove(this.volumeButton, `pf-icon_icVol${i}`);
         });
     }
 
@@ -168,7 +168,7 @@ class VolumeSlider extends BaseElement {
             iconNum = 3;
         }
 
-        this.classListAdd(this.volumeButton, `icon_icVol${iconNum}`);
+        this.classListAdd(this.volumeButton, `pf-icon_icVol${iconNum}`);
     }
 
     normalizeEventPosition(e) {
