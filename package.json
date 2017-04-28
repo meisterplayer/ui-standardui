@@ -1,5 +1,5 @@
 {
-  "name": "meister-plugin-standardui",
+  "name": "@meisterplayer/plugin-standardui",
   "main": "dist/StandardUi.js",
   "author": {
     "name": "Triple"
