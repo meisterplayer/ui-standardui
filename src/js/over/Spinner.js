@@ -23,7 +23,7 @@ class Spinner extends BaseElement {
         this.on('itemUnloaded', () => this.hideSpinner());
         this.on('playerPlay', () => this.hideSpinner());
         this.on('showLoading', (e) => { this.showSpinner(e); });
-        this.on('hideLoading', () => this.hideSpinner());
+        this.on('hideLoading', (e) => this.hideSpinner(e));
     }
 
     showSpinner(e) {
