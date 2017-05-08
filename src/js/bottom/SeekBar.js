@@ -57,6 +57,7 @@ class SeekBar extends BaseElement {
         this.on('playerProgress', e => this.onPlayerProgress(e));
         this.on('playerDurationChange', () => { this.videoDuration = this.meister.duration; });
         this.on('playerLoadedMetadata', () => { this.loadedMetadata = true; });
+        this.on('SeekLimiter:updateSegments', this.onSeekLimiterUpdateSegments.bind(this));
 
         // Ad events.
         this.points = {};
@@ -140,6 +141,8 @@ class SeekBar extends BaseElement {
         } else {
             this.classListRemove(this.element, 'pf-ui-element-hidden');
         }
+
+        this.calculatedDuration = timeInfo.duration;
     }
 
     onTimeUpdate(e) {
@@ -313,6 +316,48 @@ class SeekBar extends BaseElement {
         }
 
         return normalizedProgress;
+    }
+
+    onSeekLimiterUpdateSegments(event) {
+        let createPoint = function createPoint(beginTime, endTime) {
+            const element = document.createElement('div');
+            const normalizedProgress = beginTime / this.calculatedDuration;
+            const normalizedEndTime = endTime / this.calculatedDuration;
+
+            this.meister.elementUtils.classListAdd(element, 'pf-seek-bar-point', 'pf-ad-point');
+            element.id = `SeekLimiterPoint-${beginTime}-${endTime}`;
+
+            const pointPosition = 100 * normalizedProgress;
+            const endPointPosition = 100 * normalizedEndTime;
+
+            element.style.left = `${pointPosition}%`;
+            element.style.width = `${endPointPosition - pointPosition}%`;
+
+            this.seekBarDuration.appendChild(element);
+            this.points[`SeekLimiterPoint-${beginTime}-${endTime}`] = element;
+        };
+
+        createPoint = createPoint.bind(this);
+
+        Object.keys(this.points).forEach((key) => {
+            if (key.startsWith('SeekLimiterPoint')) {
+                // console.log(this.points, this.points.indexOf, this.points[key]);
+                this.seekBarDuration.removeChild(this.points[key]);
+                delete this.points[key];
+            }
+        });
+
+        if (this.loadedMetadata) {
+            event.segments.forEach((segment) => {
+                createPoint(segment.begin, segment.end);
+            });
+        } else {
+            this.one('playerLoadedMetadata', () => {
+                event.segments.forEach((segment) => {
+                    createPoint(segment.begin, segment.end);
+                });
+            });
+        }
     }
 
     updateFigure(percentage) {
