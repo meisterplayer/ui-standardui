@@ -10,6 +10,7 @@ import CaptionsButton from './CaptionsButton';
 import SeekBar from './SeekBar';
 import VolumeSlider from './VolumeSlider';
 import BaseElement from '../BaseElement';
+import CastButton from '../top/CastButton';
 
 class BottomBar extends BaseElement {
     constructor(config, meister) {
@@ -61,6 +62,12 @@ class BottomBar extends BaseElement {
 
         this.fullscreenButton = new FullscreenButton(meister);
         this.bottomRightWrapper.appendChild(this.fullscreenButton.getNode());
+
+        if (!this.config.castButton || !this.config.castButton.hide) {
+            this.castButton = new CastButton(meister, config);
+            this.bottomRightWrapper.appendChild(this.castButton.getNode());
+        }
+
 
         if (!this.config.qualityButton || !this.config.qualityButton.hide) {
             this.qualityButton = new QualityButton(meister, this.config);

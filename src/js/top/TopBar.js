@@ -1,5 +1,5 @@
 import TitleDisplay from './TitleDisplay';
-import CastButton from './CastButton';
+// import CastButton from './CastButton';
 import BaseElement from '../BaseElement';
 import PluginButton from './PluginButton';
 
@@ -20,10 +20,10 @@ class TopBar extends BaseElement {
         this.topRightWrapper = document.createElement('div');
         this.classListAdd(this.topRightWrapper, 'pf-ui-wrapper-right');
 
-        if (!this.config.castButton || !this.config.castButton.hide) {
-            this.castButton = new CastButton(meister, config);
-            this.topRightWrapper.appendChild(this.castButton.getNode());
-        }
+        // if (!this.config.castButton || !this.config.castButton.hide) {
+        //     this.castButton = new CastButton(meister, config);
+        //     this.topRightWrapper.appendChild(this.castButton.getNode());
+        // }
 
         // Append top right half
         this.element.appendChild(this.topRightWrapper);
