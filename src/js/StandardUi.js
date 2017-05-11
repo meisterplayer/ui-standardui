@@ -35,7 +35,12 @@ class StandardUi extends Meister.Ui {
             });
 
             this.standardWrapper.addEventListener('click', () => {
-                if (this.isLive && this.config.disablePauseWithLive) {
+
+                if (this.isLive && (this.config.disablePauseWithLive || this.meister.config.disablePauseWithLive)) {
+                    // TODO: remove this.config.disablePauseWithLive in next release
+                    if (Object.prototype.hasOwnProperty.call(this.config, 'disablePauseWithLive')) {
+                        console.warn('Setting disablePauseWithLive will be moved to the global configuration in next release of MeisterPlayer.');
+                    }
                     return;
                 }
 

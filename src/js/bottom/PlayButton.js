@@ -27,9 +27,6 @@ class PlayButton extends BaseElement {
 
     onItemTimeInfo(timeInfo) {
         this.isLive = timeInfo.isLive;
-        if (Object.prototype.hasOwnProperty.call(this.config, 'disablePauseWithLive')) {
-            console.warn('Setting disablePauseWithLive will be moved to the global configuration in next release of MeisterPlayer.');
-        }
 
         if (this.disablePause()) {
             this.toggleIcon();
