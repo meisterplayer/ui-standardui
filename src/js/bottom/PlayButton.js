@@ -30,10 +30,15 @@ class PlayButton extends BaseElement {
         if (Object.prototype.hasOwnProperty.call(this.config, 'disablePauseWithLive')) {
             console.warn('Setting disablePauseWithLive will be moved to the global configuration in next release of MeisterPlayer.');
         }
-        if (this.isLive && (this.config.disablePauseWithLive || this.meister.config.disablePauseWithLive) && this.meister.playing && this.type === 'normal') {
-            // TODO: remove this.config.disablePauseWithLive in next release
+
+        if (this.disablePause()) {
             this.toggleIcon();
         }
+    }
+
+    disablePause() {
+        // TODO: remove this.config.disablePauseWithLive in next release
+        return (this.isLive && (this.config.disablePauseWithLive || this.meister.config.disablePauseWithLive) && this.meister.playing && this.type === 'normal');
     }
 
     onClick() {
@@ -45,7 +50,7 @@ class PlayButton extends BaseElement {
     }
 
     toggleIcon() {
-        if (this.isLive && this.config.disablePauseWithLive && this.meister.playing && this.type === 'normal') {
+        if (this.disablePause()) {
             this.classListRemove(this.element, 'pf-icon_icPlay');
             this.classListRemove(this.element, 'pf-icon_icPause');
             return;
