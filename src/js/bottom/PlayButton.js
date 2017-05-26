@@ -28,12 +28,12 @@ class PlayButton extends BaseElement {
     onItemTimeInfo(timeInfo) {
         this.isLive = timeInfo.isLive;
 
-        if (this.disablePause()) {
+        if (this.isPauseDisabled()) {
             this.toggleIcon();
         }
     }
 
-    disablePause() {
+    isPauseDisabled() {
         // TODO: remove this.config.disablePauseWithLive in next release
         return (this.isLive && (this.config.disablePauseWithLive || this.meister.config.disablePauseWithLive) && this.meister.playing && this.type === 'normal');
     }
@@ -47,7 +47,7 @@ class PlayButton extends BaseElement {
     }
 
     toggleIcon() {
-        if (this.disablePause()) {
+        if (this.isPauseDisabled()) {
             this.classListRemove(this.element, 'pf-icon_icPlay');
             this.classListRemove(this.element, 'pf-icon_icPause');
             return;
