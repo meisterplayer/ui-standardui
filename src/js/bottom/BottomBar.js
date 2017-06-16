@@ -81,10 +81,16 @@ class BottomBar extends BaseElement {
         this.on('uiPluginClose', () => this.onPluginClose());
 
         // Clicks inside the control bars shouldn't play/pause the player.
-        this.element.addEventListener('click', (e) => {
-            const clickEvent = e || event;
-            clickEvent.stopPropagation();
-        });
+        this.element.addEventListener('click', this.stopPointerPropagation.bind(this));
+
+        // Double clicks/taps inside the controls shouldn't trigger fullscreen.
+        this.element.addEventListener('dblclick', this.stopPointerPropagation.bind(this));
+        this.element.addEventListener('touchstart', this.stopPointerPropagation.bind(this));
+    }
+
+    stopPointerPropagation(e) {
+        const pointerEvent = e || event;
+        pointerEvent.stopPropagation();
     }
 
     hide() {
