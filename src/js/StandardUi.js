@@ -5,6 +5,7 @@ import Preview from './over/Preview';
 import AdControls from './AdControls';
 import PluginSpace from './over/PluginSpace';
 import Spinner from './over/Spinner';
+import packageJson from '../../package.json';
 
 let TIME_TILL_FADE = 3000;
 
@@ -83,6 +84,10 @@ class StandardUi extends Meister.Ui {
 
     static get pluginName() {
         return 'StandardUi';
+    }
+
+    static get pluginVersion() {
+        return packageJson.version;
     }
 
     toggleFixedControls(on) {
