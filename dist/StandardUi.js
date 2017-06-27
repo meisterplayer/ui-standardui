@@ -64,7 +64,7 @@ module.exports =
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 40);
+/******/ 	return __webpack_require__(__webpack_require__.s = 41);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1026,6 +1026,7 @@ var SeekBar = function (_BaseElement) {
         _this.on('playerLoadedMetadata', function () {
             _this.loadedMetadata = true;
         });
+        _this.on('SeekLimiter:updateSegments', _this.onSeekLimiterUpdateSegments.bind(_this));
 
         // Ad events.
         _this.points = {};
@@ -1129,6 +1130,8 @@ var SeekBar = function (_BaseElement) {
             } else {
                 this.classListRemove(this.element, 'pf-ui-element-hidden');
             }
+
+            this.calculatedDuration = timeInfo.duration;
         }
     }, {
         key: 'onTimeUpdate',
@@ -1323,6 +1326,51 @@ var SeekBar = function (_BaseElement) {
             }
 
             return normalizedProgress;
+        }
+    }, {
+        key: 'onSeekLimiterUpdateSegments',
+        value: function onSeekLimiterUpdateSegments(event) {
+            var _this3 = this;
+
+            var createPoint = function createPoint(beginTime, endTime) {
+                var element = document.createElement('div');
+                var normalizedProgress = beginTime / this.calculatedDuration;
+                var normalizedEndTime = endTime / this.calculatedDuration;
+
+                this.meister.elementUtils.classListAdd(element, 'pf-seek-bar-point', 'pf-ad-point');
+                element.id = 'SeekLimiterPoint-' + beginTime + '-' + endTime;
+
+                var pointPosition = 100 * normalizedProgress;
+                var endPointPosition = 100 * normalizedEndTime;
+
+                element.style.left = pointPosition + '%';
+                element.style.width = endPointPosition - pointPosition + '%';
+
+                this.seekBarDuration.appendChild(element);
+                this.points['SeekLimiterPoint-' + beginTime + '-' + endTime] = element;
+            };
+
+            createPoint = createPoint.bind(this);
+
+            Object.keys(this.points).forEach(function (key) {
+                if (key.startsWith('SeekLimiterPoint')) {
+                    // console.log(this.points, this.points.indexOf, this.points[key]);
+                    _this3.seekBarDuration.removeChild(_this3.points[key]);
+                    delete _this3.points[key];
+                }
+            });
+
+            if (this.loadedMetadata) {
+                event.segments.forEach(function (segment) {
+                    createPoint(segment.begin, segment.end);
+                });
+            } else {
+                this.one('playerLoadedMetadata', function () {
+                    event.segments.forEach(function (segment) {
+                        createPoint(segment.begin, segment.end);
+                    });
+                });
+            }
         }
     }, {
         key: 'updateFigure',
@@ -2255,6 +2303,10 @@ var _Spinner = __webpack_require__(27);
 
 var _Spinner2 = _interopRequireDefault(_Spinner);
 
+var _package = __webpack_require__(40);
+
+var _package2 = _interopRequireDefault(_package);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2532,6 +2584,11 @@ var StandardUi = function (_Meister$Ui) {
         get: function get() {
             return 'StandardUi';
         }
+    }, {
+        key: 'pluginVersion',
+        get: function get() {
+            return _package2.default.version;
+        }
     }]);
 
     return StandardUi;
@@ -2791,14 +2848,21 @@ var BottomBar = function (_BaseElement) {
         });
 
         // Clicks inside the control bars shouldn't play/pause the player.
-        _this.element.addEventListener('click', function (e) {
-            var clickEvent = e || event;
-            clickEvent.stopPropagation();
-        });
+        _this.element.addEventListener('click', _this.stopPointerPropagation.bind(_this));
+
+        // Double clicks/taps inside the controls shouldn't trigger fullscreen.
+        _this.element.addEventListener('dblclick', _this.stopPointerPropagation.bind(_this));
+        _this.element.addEventListener('touchstart', _this.stopPointerPropagation.bind(_this));
         return _this;
     }
 
     _createClass(BottomBar, [{
+        key: 'stopPointerPropagation',
+        value: function stopPointerPropagation(e) {
+            var pointerEvent = e || event;
+            pointerEvent.stopPropagation();
+        }
+    }, {
         key: 'hide',
         value: function hide() {
             if (this.qualityButton) {
@@ -4194,6 +4258,50 @@ if(false) {
 
 /***/ }),
 /* 40 */
+/***/ (function(module, exports) {
+
+module.exports = {
+	"name": "@meisterplayer/plugin-standardui",
+	"main": "dist/StandardUi.js",
+	"author": {
+		"name": "Triple"
+	},
+	"description": "Meister standard ui",
+	"dependencies": {
+		"noop2": "^2.0.0"
+	},
+	"devDependencies": {
+		"meister-gulp-webpack-tasks": "^1.0.6",
+		"meister-js-dev": "^3.1.0",
+		"babel-core": "^6.23.1",
+		"babel-loader": "^6.4.0",
+		"babel-preset-es2015": "^6.22.0",
+		"babel-preset-es2017": "^6.22.0",
+		"babel-runtime": "^6.23.0",
+		"base64-font-loader": "0.0.4",
+		"css-loader": "^0.26.2",
+		"gulp": "^3.9.1",
+		"node-sass": "^4.5.0",
+		"sass-loader": "^6.0.2",
+		"style-loader": "^0.13.2",
+		"url-loader": "^0.5.8",
+		"webpack": "^2.2.1"
+	},
+	"keywords": [
+		"meister",
+		"video",
+		"plugin"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/meisterplayer/ui-standardui.git"
+	},
+	"license": "Apache-2.0",
+	"version": "5.3.0"
+};
+
+/***/ }),
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(12);

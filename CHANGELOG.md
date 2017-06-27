@@ -1,3 +1,19 @@
+<a name="5.3.0"></a>
+# [5.3.0](https://github.com/meisterplayer/ui-standardui/compare/v5.2.0...v5.3.0) (2017-06-27)
+
+
+### Bug Fixes
+
+* **ui:** Double clicking controls no longer enters fullscreen ([e4daffb](https://github.com/meisterplayer/ui-standardui/commit/e4daffb)), closes [meisterplayer/meisterplayer#43](https://github.com/meisterplayer/meisterplayer/issues/43)
+
+
+### Features
+
+* **pluginVersion:** Add pluginVersion to class ([70edff2](https://github.com/meisterplayer/ui-standardui/commit/70edff2))
+* **seekbar:** Add SeekLimiter support ([84faaeb](https://github.com/meisterplayer/ui-standardui/commit/84faaeb))
+
+
+
 <a name="5.2.0"></a>
 # [5.2.0](https://github.com/meisterplayer/ui-standardui/compare/v5.1.0...v5.2.0) (2017-05-29)
 
