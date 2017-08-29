@@ -1,3 +1,13 @@
+<a name="5.3.1"></a>
+## [5.3.1](https://github.com/meisterplayer/ui-standardui/compare/v5.3.0...v5.3.1) (2017-08-29)
+
+
+### Bug Fixes
+
+* **mobile:** Fix issue where font's where too small ([973ec81](https://github.com/meisterplayer/ui-standardui/commit/973ec81))
+
+
+
 <a name="5.3.0"></a>
 # [5.3.0](https://github.com/meisterplayer/ui-standardui/compare/v5.2.0...v5.3.0) (2017-06-27)
 
