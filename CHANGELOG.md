@@ -1,3 +1,13 @@
+<a name="5.4.0"></a>
+# [5.4.0](https://github.com/meisterplayer/ui-standardui/compare/v5.3.1...v5.4.0) (2017-09-18)
+
+
+### Features
+
+* **config:** Add playPauseOnScreenClick option ([103b40b](https://github.com/meisterplayer/ui-standardui/commit/103b40b))
+
+
+
 <a name="5.3.1"></a>
 ## [5.3.1](https://github.com/meisterplayer/ui-standardui/compare/v5.3.0...v5.3.1) (2017-08-29)
 
