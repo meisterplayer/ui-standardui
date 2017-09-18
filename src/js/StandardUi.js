@@ -24,6 +24,8 @@ class StandardUi extends Meister.Ui {
         this.standardWrapper = document.createElement('div');
         this.meister.elementUtils.classListAdd(this.standardWrapper, 'pf-controls-wrapper');
 
+        this.meister.config.playPauseOnScreenClick = this.meister.config.playPauseOnScreenClick === undefined ? true : this.meister.config.playPauseOnScreenClick;
+
         this.preview = new Preview(meister);
         this.spinner = new Spinner(meister);
 
@@ -42,6 +44,10 @@ class StandardUi extends Meister.Ui {
                     if (Object.prototype.hasOwnProperty.call(this.config, 'disablePauseWithLive')) {
                         console.warn('Setting disablePauseWithLive will be moved to the global configuration in next release of MeisterPlayer.');
                     }
+                    return;
+                }
+
+                if (this.meister.config.playPauseOnScreenClick) {
                     return;
                 }
 
