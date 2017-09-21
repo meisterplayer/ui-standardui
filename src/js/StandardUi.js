@@ -47,7 +47,7 @@ class StandardUi extends Meister.Ui {
                     return;
                 }
 
-                if (this.meister.config.playPauseOnScreenClick) {
+                if (!this.meister.config.playPauseOnScreenClick) {
                     return;
                 }
 
