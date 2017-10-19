@@ -1,3 +1,13 @@
+<a name="5.4.2"></a>
+## [5.4.2](https://github.com/meisterplayer/ui-standardui/compare/v5.4.1...v5.4.2) (2017-10-19)
+
+
+### Bug Fixes
+
+* **mobile:** Fix issue with mobile alignment ([fe2e83e](https://github.com/meisterplayer/ui-standardui/commit/fe2e83e))
+
+
+
 <a name="5.4.1"></a>
 ## [5.4.1](https://github.com/meisterplayer/ui-standardui/compare/v5.3.1...v5.4.1) (2017-09-21)
 
