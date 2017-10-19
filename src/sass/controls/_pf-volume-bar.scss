@@ -4,6 +4,10 @@
 .pf-volume-button {
     float: left;
     margin-right: 4px;
+
+    &.pf-mobile {
+        line-height: 42px;
+    }
 }
 
 .pf-volume-slider-wrapper {
