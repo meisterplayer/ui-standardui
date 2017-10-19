@@ -58,6 +58,10 @@
     &:first-child {
         padding-left: 2%;
     }
+
+    &.pf-mobile {
+        height: 100%;
+    }
 }
 
 .pf-ui-wrapper-right {
