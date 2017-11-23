@@ -792,6 +792,13 @@ var QualityButton = function (_BaseElement) {
 
             this.classListAdd(this.element, 'pf-ui-element-hidden');
         }
+
+        /**
+         * Handles the onclick event.
+         *
+         * @param {MouseEvent} e
+         */
+
     }, {
         key: 'onClick',
         value: function onClick(e) {
@@ -864,7 +871,16 @@ var QualityButton = function (_BaseElement) {
                     });
                 });
             }
-            this.selectOption(info.currentIndex, true);
+
+            // parseInt with null will return NaN, just like string with not a numeric value.
+            var savedBitrateIndex = parseInt(localStorage.getItem('meister_bitrateIndex'), 10);
+            var bitrateIndexExists = (0, _bitrate.doesBitrateIndexExist)(this.bitrates, savedBitrateIndex);
+
+            if (!Number.isNaN(savedBitrateIndex) && bitrateIndexExists) {
+                this.selectOption(savedBitrateIndex, false);
+            } else {
+                this.selectOption(info.currentIndex, true);
+            }
         }
     }, {
         key: 'createOption',
@@ -904,6 +920,7 @@ var QualityButton = function (_BaseElement) {
         value: function selectOption(index) {
             var silent = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
 
+            /** @type {number} */
             var bitrateIndex = null;
 
             if (this.qualityMappingMode) {
@@ -916,6 +933,8 @@ var QualityButton = function (_BaseElement) {
                 this.meister.trigger('requestBitrate', {
                     bitrateIndex: bitrateIndex
                 });
+
+                localStorage.setItem('meister_bitrateIndex', bitrateIndex.toString());
             }
         }
     }]);
@@ -3147,6 +3166,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.prepareBitrateOption = prepareBitrateOption;
 exports.selectBitrate = selectBitrate;
+exports.doesBitrateIndexExist = doesBitrateIndexExist;
 function prepareBitrateOption(element, bitrate, index, transform) {
     var qualityOption = element;
 
@@ -3169,6 +3189,20 @@ function selectBitrate(bitrates, index, silent) {
     });
 
     return silent ? null : index;
+}
+
+/**
+ * Checks if a given index exists in the bitrates list.
+ *
+ * @export
+ * @param {Array.<{index: number, bitrate:number, option:HTMLElement}>} bitrates
+ * @param {number} index
+ * @returns {boolean}
+ */
+function doesBitrateIndexExist(bitrates, index) {
+    return !!bitrates.find(function (bitrate) {
+        return bitrate.index === index;
+    });
 }
 
 /***/ }),
@@ -4266,7 +4300,7 @@ if(false) {
 /* 40 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"@meisterplayer/plugin-standardui","main":"dist/StandardUi.js","author":{"name":"Triple"},"description":"Meister standard ui","dependencies":{"noop2":"^2.0.0"},"devDependencies":{"meister-gulp-webpack-tasks":"^1.0.6","meister-js-dev":"^3.1.0","babel-core":"^6.23.1","babel-loader":"^6.4.0","babel-preset-es2015":"^6.22.0","babel-preset-es2017":"^6.22.0","babel-runtime":"^6.23.0","base64-font-loader":"0.0.4","css-loader":"^0.26.2","gulp":"^3.9.1","node-sass":"^4.5.0","sass-loader":"^6.0.2","style-loader":"^0.13.2","url-loader":"^0.5.8","webpack":"^2.2.1"},"keywords":["meister","video","plugin"],"repository":{"type":"git","url":"https://github.com/meisterplayer/ui-standardui.git"},"license":"Apache-2.0","version":"5.4.2"}
+module.exports = {"name":"@meisterplayer/plugin-standardui","main":"dist/StandardUi.js","author":{"name":"Triple"},"description":"Meister standard ui","dependencies":{"noop2":"^2.0.0"},"devDependencies":{"meister-gulp-webpack-tasks":"^1.0.6","meister-js-dev":"^3.1.0","babel-core":"^6.23.1","babel-loader":"^6.4.0","babel-preset-es2015":"^6.22.0","babel-preset-es2017":"^6.22.0","babel-runtime":"^6.23.0","base64-font-loader":"0.0.4","css-loader":"^0.26.2","gulp":"^3.9.1","node-sass":"^4.5.0","sass-loader":"^6.0.2","style-loader":"^0.13.2","url-loader":"^0.5.8","webpack":"^2.2.1"},"keywords":["meister","video","plugin"],"repository":{"type":"git","url":"https://github.com/meisterplayer/ui-standardui.git"},"license":"Apache-2.0","version":"5.4.3"}
 
 /***/ }),
 /* 41 */
