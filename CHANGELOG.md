@@ -1,3 +1,10 @@
+<a name="5.4.4"></a>
+## [5.4.4](https://github.com/meisterplayer/ui-standardui/compare/v5.4.3...v5.4.4) (2017-12-04)
+
+### Features
+* **localization:** Add more localization properties
+
+
 <a name="5.4.3"></a>
 ## [5.4.3](https://github.com/meisterplayer/ui-standardui/compare/v5.4.2...v5.4.3) (2017-11-23)
 

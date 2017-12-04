@@ -2064,7 +2064,7 @@ var AdControls = function (_BaseElement) {
             if (ad) {
                 var adPodInfo = ad.getAdPodInfo();
 
-                _this.adCount.textContent = 'Ad ' + adPodInfo.getAdPosition() + ' of ' + adPodInfo.getTotalAds();
+                _this.adCount.textContent = _this.meister.Localization.get('AD_COUNT') + ' ' + adPodInfo.getAdPosition() + ' ' + _this.meister.Localization.get('OF_COUNT') + ' ' + adPodInfo.getTotalAds();
                 var adDuration = _this.meister.utils.timeToHMS(Math.round(ad.getDuration()));
                 _this.adCountDown.textContent = '(' + adDuration + ')';
             } else {
@@ -4300,7 +4300,7 @@ if(false) {
 /* 40 */
 /***/ (function(module, exports) {
 
-module.exports = {"name":"@meisterplayer/plugin-standardui","main":"dist/StandardUi.js","author":{"name":"Triple"},"description":"Meister standard ui","dependencies":{"noop2":"^2.0.0"},"devDependencies":{"meister-gulp-webpack-tasks":"^1.0.6","meister-js-dev":"^3.1.0","babel-core":"^6.23.1","babel-loader":"^6.4.0","babel-preset-es2015":"^6.22.0","babel-preset-es2017":"^6.22.0","babel-runtime":"^6.23.0","base64-font-loader":"0.0.4","css-loader":"^0.26.2","gulp":"^3.9.1","node-sass":"^4.5.0","sass-loader":"^6.0.2","style-loader":"^0.13.2","url-loader":"^0.5.8","webpack":"^2.2.1"},"keywords":["meister","video","plugin"],"repository":{"type":"git","url":"https://github.com/meisterplayer/ui-standardui.git"},"license":"Apache-2.0","version":"5.4.3"}
+module.exports = {"name":"@meisterplayer/plugin-standardui","main":"dist/StandardUi.js","author":{"name":"Triple"},"description":"Meister standard ui","dependencies":{"noop2":"^2.0.0"},"devDependencies":{"meister-gulp-webpack-tasks":"^1.0.6","meister-js-dev":"^3.1.0","babel-core":"^6.23.1","babel-loader":"^6.4.0","babel-preset-es2015":"^6.22.0","babel-preset-es2017":"^6.22.0","babel-runtime":"^6.23.0","base64-font-loader":"0.0.4","css-loader":"^0.26.2","gulp":"^3.9.1","node-sass":"^4.5.0","sass-loader":"^6.0.2","style-loader":"^0.13.2","url-loader":"^0.5.8","webpack":"^2.2.1"},"keywords":["meister","video","plugin"],"repository":{"type":"git","url":"https://github.com/meisterplayer/ui-standardui.git"},"license":"Apache-2.0","version":"5.4.4"}
 
 /***/ }),
 /* 41 */
