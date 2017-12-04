@@ -84,7 +84,7 @@ class AdControls extends BaseElement {
             if (ad) {
                 const adPodInfo = ad.getAdPodInfo();
 
-                this.adCount.textContent = `${this.meister.Localization.get('AD_COUNT')} ${adPodInfo.getAdPosition()} ${this.meister.Localization.get('OFF_COUNT')} ${adPodInfo.getTotalAds()}`;
+                this.adCount.textContent = `${this.meister.Localization.get('AD_COUNT')} ${adPodInfo.getAdPosition()} ${this.meister.Localization.get('OF_COUNT')} ${adPodInfo.getTotalAds()}`;
                 const adDuration = this.meister.utils.timeToHMS(Math.round(ad.getDuration()));
                 this.adCountDown.textContent = `(${adDuration})`;
             } else {
