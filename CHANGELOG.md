@@ -1,3 +1,17 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="5.4.5"></a>
+## [5.4.5](https://github.com/meisterplayer/ui-standardui/compare/v5.4.4...v5.4.5) (2018-06-11)
+
+
+### Bug Fixes
+
+* **edge:** Fix issue where Edge was not rendering correctly ([302119a](https://github.com/meisterplayer/ui-standardui/commit/302119a))
+
+
+
 <a name="5.4.4"></a>
 ## [5.4.4](https://github.com/meisterplayer/ui-standardui/compare/v5.4.3...v5.4.4) (2017-12-04)
 
@@ -107,6 +121,3 @@
 * **styles:** Namespace icon -> pf-icon ([2d8a2a5](https://github.com/meisterplayer/ui-standardui/commit/2d8a2a5))
 * **timedisplay:** Set time to 0:00 instead of - ([0437f14](https://github.com/meisterplayer/ui-standardui/commit/0437f14))
 * **ui:** Add triggerByUser on ad play/pause ([455ced4](https://github.com/meisterplayer/ui-standardui/commit/455ced4))
-
-
-
