@@ -113,6 +113,9 @@ class SeekBar extends BaseElement {
 
                 document.removeEventListener('touchmove', this.onSeekMove);
                 document.removeEventListener('touchend', this.onSeekUp);
+
+                // Inform rest of the player that the user stopped scrubbing
+                this.meister.trigger('endScrubbing');
             }
         };
     }
@@ -232,6 +235,9 @@ class SeekBar extends BaseElement {
 
         document.addEventListener('touchmove', this.onSeekMove);
         document.addEventListener('touchend', this.onSeekUp);
+
+        // Inform rest of the player that the user is scrubbing
+        this.meister.trigger('startScrubbing');
     }
 
     // Player seeked, update the seekbar.
