@@ -30,6 +30,8 @@ class Preview extends BaseElement {
         this.element.appendChild(this.info);
         this.element.appendChild(this.playButton);
 
+        this.one('playlistMetadata', item => this.onPlaylistMetadata(item));
+
         this.on('uiEvent', (e) => {
             if (e.type === 'splash') {
                 this.classListRemove(this.element, 'pf-ui-element-hidden');
@@ -64,13 +66,40 @@ class Preview extends BaseElement {
             }
 
             this.classListAdd(this.element, 'pf-ui-element-hidden');
-            this.meister.play();
+            this.meister.play(true);
         });
 
         this.on('playerPlay', () => {
             this.itemHasLoaded = true;
             this.classListAdd(this.element, 'pf-ui-element-hidden');
         });
+    }
+
+    /**
+     * Makes sure that the play button is only shown when it's possible to play.
+     *
+     * @param {any} currentItem
+     * @memberof Preview
+     */
+    onPlaylistMetadata(currentItem) {
+        let isAdItem = false;
+
+        if (currentItem.parallel) {
+            // Make sure we got a item that supports vmap in the parallel items.
+            isAdItem = !!currentItem.parallel.find(parallelItem => parallelItem.type === 'vmap');
+        } else if (currentItem.type === 'aditem') {
+            // Items that simply have the aditem as type are also an ad item..
+            isAdItem = true;
+        }
+
+        // With ad items we first want to make sure we can actually load ads before showing a play button
+        if (isAdItem) {
+            // Ad blockers should not be the reason to not show the play button.
+            this.one('adBlockerDetected', () => this.classListRemove(this.playButton, 'pf-ui-element-hidden'));
+            this.one('adCuePoints', () => this.classListRemove(this.playButton, 'pf-ui-element-hidden'));
+        } else {
+            this.one('itemLoaded', () => this.classListRemove(this.playButton, 'pf-ui-element-hidden'));
+        }
     }
 
     onItemUnloaded() {
@@ -80,6 +109,8 @@ class Preview extends BaseElement {
         }
 
         this.itemHasLoaded = false;
+        this.one('playlistMetadata', item => this.onPlaylistMetadata(item));
+
         this.element.style['background-image'] = '';
         this.infoTitle.innerHTML = '';
         this.infoDescription.textContent = '';
