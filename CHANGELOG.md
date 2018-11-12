@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.5.0"></a>
+# [5.5.0](https://github.com/meisterplayer/ui-standardui/compare/v5.4.5...v5.5.0) (2018-11-12)
+
+
+### Bug Fixes
+
+* **play:** Clicking the overlay no longer starts playback before loading ([2a9782c](https://github.com/meisterplayer/ui-standardui/commit/2a9782c))
+
+
+### Features
+
+* **events:** Add events for start/stop scrubbing ([279c8b1](https://github.com/meisterplayer/ui-standardui/commit/279c8b1))
+
+
+
 <a name="5.4.5"></a>
 ## [5.4.5](https://github.com/meisterplayer/ui-standardui/compare/v5.4.4...v5.4.5) (2018-06-11)
 
