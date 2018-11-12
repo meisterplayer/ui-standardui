@@ -21,6 +21,8 @@ class Preview extends BaseElement {
         // This prevents the preview from showing correctly.
         this.isLoaded = false;
 
+        this.itemHasLoaded = false;
+
         this.classListAdd(this.playButton,
             'pf-preview-play-button', 'pf-ui-element-active', 'pf-ui-element-hidden');
         this.classListAdd(this.playButton, 'pf-icon', 'pf-icon_icPlay');
@@ -48,17 +50,25 @@ class Preview extends BaseElement {
             }
         });
 
-        this.on('itemLoaded', () => this.classListRemove(this.playButton, 'pf-ui-element-hidden'));
+        this.on('itemLoaded', () => {
+            this.itemHasLoaded = true;
+            this.classListRemove(this.playButton, 'pf-ui-element-hidden');
+        });
 
         this.element.addEventListener('click', (e) => {
             const clickEvent = e || event;
             clickEvent.stopPropagation();
+
+            if (!this.itemHasLoaded) {
+                return;
+            }
 
             this.classListAdd(this.element, 'pf-ui-element-hidden');
             this.meister.play();
         });
 
         this.on('playerPlay', () => {
+            this.itemHasLoaded = true;
             this.classListAdd(this.element, 'pf-ui-element-hidden');
         });
     }
@@ -69,6 +79,7 @@ class Preview extends BaseElement {
             return;
         }
 
+        this.itemHasLoaded = false;
         this.element.style['background-image'] = '';
         this.infoTitle.innerHTML = '';
         this.infoDescription.textContent = '';
