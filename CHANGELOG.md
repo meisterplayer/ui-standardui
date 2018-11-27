@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="5.6.0"></a>
+# [5.6.0](https://github.com/meisterplayer/ui-standardui/compare/v5.5.0...v5.6.0) (2018-11-27)
+
+
+### Features
+
+* **ads:** Make the preview button more aware of ads so it can adjust accordingly ([615f315](https://github.com/meisterplayer/ui-standardui/commit/615f315))
+
+
+
 <a name="5.5.0"></a>
 # [5.5.0](https://github.com/meisterplayer/ui-standardui/compare/v5.4.5...v5.5.0) (2018-11-12)
 
