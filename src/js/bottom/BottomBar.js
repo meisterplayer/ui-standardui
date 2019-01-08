@@ -10,6 +10,7 @@ import CaptionsButton from './CaptionsButton';
 import SeekBar from './SeekBar';
 import VolumeSlider from './VolumeSlider';
 import BaseElement from '../BaseElement';
+import { STORAGE_BITRATE_INDEX_NAME } from '../Constants';
 
 class BottomBar extends BaseElement {
     constructor(config, meister) {
@@ -65,6 +66,8 @@ class BottomBar extends BaseElement {
         if (!this.config.qualityButton || !this.config.qualityButton.hide) {
             this.qualityButton = new QualityButton(meister, this.config);
             this.bottomRightWrapper.appendChild(this.qualityButton.getNode());
+        } else {
+            localStorage.removeItem(STORAGE_BITRATE_INDEX_NAME);
         }
 
         this.langButton = new LanguageButton(meister);

@@ -2,6 +2,7 @@ import BaseElement from '../../BaseElement';
 
 import { prepareBitrateOption, selectBitrate, doesBitrateIndexExist } from './bitrate';
 import { expandQualityMapping, prepareResolutionMapping, prepareResolutionOption, selectResolution } from './resolution';
+import { STORAGE_BITRATE_INDEX_NAME } from '../../Constants';
 
 const RESOLUTION = 0;
 const BITRATE = 1;
@@ -118,7 +119,7 @@ class QualityButton extends BaseElement {
         }
 
         // parseInt with null will return NaN, just like string with not a numeric value.
-        const savedBitrateIndex = parseInt(localStorage.getItem('meister_bitrateIndex'), 10);
+        const savedBitrateIndex = parseInt(localStorage.getItem(STORAGE_BITRATE_INDEX_NAME), 10);
         const bitrateIndexExists = doesBitrateIndexExist(this.bitrates, savedBitrateIndex);
 
         if (!Number.isNaN(savedBitrateIndex) && bitrateIndexExists) {
@@ -171,7 +172,7 @@ class QualityButton extends BaseElement {
                 bitrateIndex,
             });
 
-            localStorage.setItem('meister_bitrateIndex', bitrateIndex.toString());
+            localStorage.setItem(STORAGE_BITRATE_INDEX_NAME, bitrateIndex.toString());
         }
     }
 }
