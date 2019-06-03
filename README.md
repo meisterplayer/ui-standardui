@@ -127,6 +127,20 @@ var meisterPlayer = new Meister('#player', {
 meisterPlayer.setItem( ... );
 ```
 
+### liveThreshold *[Number]* (in sec) (default: 35) ###
+
+Determines the range near the live edge which is considered 'live' for practical purposes. By default anything closer than 35 seconds to the live edge is considered 'live' and will not trigger the button to seek to the live edge.
+
+``` JavaScript
+var meisterPlayer = new Meister('#player', {
+    StandardUi: {
+        liveThreshold: 30,
+    }
+});
+
+meisterPlayer.setItem( ... );
+```
+
 ### castButton.hide *[Boolean]* (default: false) ###
 
 Hides the castbutton for chromecast. This usually goes in conjuction with a chromecast plugin.

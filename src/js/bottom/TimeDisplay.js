@@ -1,10 +1,13 @@
 import BaseElement from '../BaseElement';
 
-const LIVE_THRESHOLD = 35;
+const DEFAULT_LIVE_THRESHOLD = 35;
 
 class TimeDisplay extends BaseElement {
-    constructor(meister) {
+    constructor(meister, config) {
         super(meister);
+        this.config = config;
+
+        this.liveThreshold = this.config.liveThreshold || DEFAULT_LIVE_THRESHOLD;
 
         this.element = document.createElement('div');
         this.classListAdd(this.element, 'pf-ui-element', 'pf-ui-element-left', 'pf-time-display');
@@ -53,8 +56,6 @@ class TimeDisplay extends BaseElement {
         if (timeInfo.isLive) {
             this.isLive = true;
             this.duration.innerHTML = 'LIVE';
-
-            if (!timeInfo.hasDVR) this.currentTime.innerHTML = '-';
         } else {
             this.duration.innerHTML = this.createTimeString(timeInfo.duration);
         }
@@ -71,33 +72,27 @@ class TimeDisplay extends BaseElement {
         // If a livestream is close enough to the edge display no time.
         const behindLive = e.duration - e.currentTime;
 
-        if (behindLive < LIVE_THRESHOLD) {
+        if (behindLive < this.liveThreshold) {
             this.currentTime.innerHTML = '-';
             this.classListRemove(this.duration, 'go-live', 'pf-ui-element-active');
+        } else {
+            // Display the amount of time the player is behind live.
+            const timeString = this.createTimeString(behindLive);
+            this.currentTime.innerHTML = `-${timeString}`;
+
+            // Activate the go live button.
+            this.classListAdd(this.duration, 'go-live', 'pf-ui-element-active');
         }
     }
 
     onPlayerSeek(e) {
+        if (this.isLive) {
+            return;
+        }
+
         // Set the duration and current time for VODs
-        if (!this.isLive) {
-            this.currentTime.innerHTML = this.createTimeString(e.currentTime);
-            this.duration.innerHTML = this.createTimeString(e.duration);
-            return;
-        }
-
-        const behindLive = e.duration - e.currentTime;
-        if (behindLive < LIVE_THRESHOLD) {
-            this.currentTime.innerHTML = '-';
-            this.classListRemove(this.duration, 'go-live', 'pf-ui-element-active');
-            return;
-        }
-
-        // Display the amount of time the player is behind live.
-        const timeString = this.createTimeString(behindLive);
-        this.currentTime.innerHTML = `-${timeString}`;
-
-        // Activate the go live button.
-        this.classListAdd(this.duration, 'go-live', 'pf-ui-element-active');
+        this.currentTime.innerHTML = this.createTimeString(e.currentTime);
+        this.duration.innerHTML = this.createTimeString(e.duration);
     }
 
     createTimeString(time) {

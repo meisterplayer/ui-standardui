@@ -45,7 +45,7 @@ class BottomBar extends BaseElement {
         this.volumeSlider = new VolumeSlider(meister);
         this.bottomLeftWrapper.appendChild(this.volumeSlider.getNode());
 
-        this.timeDisplay = new TimeDisplay(meister);
+        this.timeDisplay = new TimeDisplay(meister, config);
         this.bottomLeftWrapper.appendChild(this.timeDisplay.getNode());
 
 
