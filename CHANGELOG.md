@@ -1,6 +1,15 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [5.8.0](https://github.com/meisterplayer/ui-standardui/compare/v5.7.0...v5.8.0) (2019-06-04)
+
+
+### Features
+
+* **live:** Make live threshold configurable ([3644198](https://github.com/meisterplayer/ui-standardui/commit/3644198))
+
+
 
 <a name="5.7.0"></a>
 # [5.7.0](https://github.com/meisterplayer/ui-standardui/compare/v5.6.0...v5.7.0) (2019-01-08)
