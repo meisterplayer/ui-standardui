@@ -44,6 +44,10 @@ class QualityButton extends BaseElement {
         // Clear any previous bitrates that were present.
         this.qualitySelector.innerHTML = '';
         this.bitrates = null;
+        this.qualityMapping.forEach((mapping) => {
+            const targetMapping = mapping;
+            targetMapping.bitrates = [];
+        });
 
         this.classListAdd(this.element, 'pf-ui-element-hidden');
     }
