@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [5.8.1](https://github.com/meisterplayer/ui-standardui/compare/v5.8.0...v5.8.1) (2019-07-31)
+
+
+### Bug Fixes
+
+* **quality:** Clear previous bitrates in the quality mapping ([196475c](https://github.com/meisterplayer/ui-standardui/commit/196475c))
+
+
+
 ## [5.8.0](https://github.com/meisterplayer/ui-standardui/compare/v5.7.0...v5.8.0) (2019-06-04)
 
 
