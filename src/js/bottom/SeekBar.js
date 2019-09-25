@@ -6,6 +6,20 @@ function updateBar(element, percentage) {
     element.style.transform = `scaleX(${percentage})`; //eslint-disable-line
 }
 
+function findTimerange(mediaElement) {
+    const timeRanges = mediaElement.buffered;
+    for (let i = 0; i < timeRanges.length; i += 1) {
+        if (mediaElement.currentTime >= timeRanges.start(i)
+            && mediaElement.currentTime <= timeRanges.end(i)
+        ) {
+            return i;
+        }
+    }
+
+    // No range was found
+    return -1;
+}
+
 class SeekBar extends BaseElement {
     constructor(meister) {
         super(meister);
@@ -155,26 +169,22 @@ class SeekBar extends BaseElement {
         this.updateFigure(normalizedProgress);
     }
 
-    onPlayerProgress(e) {
-        if (!e) return;
+    onPlayerProgress(mediaElement) {
+        if (!mediaElement) return;
 
-        const timeRanges = e.buffered;
-        const currentTimeRangeIndex = this.findTimerange(timeRanges);
+        const timeRanges = mediaElement.buffered;
+        const currentTimeRangeIndex = findTimerange(mediaElement);
 
         // Should we not get an index don't bother updating.
         if (currentTimeRangeIndex === -1) {
             return;
         }
 
-        let duration = this.meister.duration;
-        let targetTime = timeRanges.end(currentTimeRangeIndex);
+        const targetTime = timeRanges.end(currentTimeRangeIndex);
+        const bufferedAhead = targetTime - mediaElement.currentTime;
+        const totalBuffered = this.meister.currentTime + bufferedAhead;
 
-        if (this.playOffset) {
-            targetTime -= this.playOffset;
-            duration -= this.playOffset;
-        }
-
-        const normalizedProgress = targetTime / duration;
+        const normalizedProgress = totalBuffered / this.meister.duration;
         updateBar(this.seekBarBuffered, normalizedProgress);
     }
 
@@ -375,19 +385,6 @@ class SeekBar extends BaseElement {
         this.meister.trigger('requestSeek', {
             relativePosition: percentage,
         });
-    }
-
-    findTimerange(timeRanges) {
-        for (let i = 0; i < timeRanges.length; i += 1) {
-            if (this.meister.currentTime >= timeRanges.start(i)
-                && this.meister.currentTime <= timeRanges.end(i)
-            ) {
-                return i;
-            }
-        }
-
-        // No range was found
-        return -1;
     }
 }
 
